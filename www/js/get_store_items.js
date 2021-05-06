@@ -6,6 +6,7 @@ function getItems(catId) {
 	xhr.open('GET', 'get_items.php?q=' + catId, true)
 	xhr.onload = function() {
 		if (this.status == 200) {
+			// FIXME: we should only set style to none for el that's set to block
 			gen('cat-items').forEach(element => element.style.display = 'none' )
 
 			gid(catId).innerHTML = this.responseText

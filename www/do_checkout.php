@@ -1,12 +1,11 @@
 <?php
 	// TODO: 
-	// X. populate store_orders with order information
-	// X. adjust value of item_stock in store_items 
-	// X. populate store_order_items with order items 
-	// X. delete store_shoppertrack records
-	// 2. Page redirect
-	// 3. Free result sets
-	// 4. 
+	// (done) - populate store_orders with order information
+	// (done) - adjust value of item_stock in store_items 
+	// (done) - populate store_order_items with order items 
+	// (done) - delete store_shoppertrack records
+	// (done) - Page redirect
+	// 1. Free result sets
 
 	if (isset($_POST['submit'])) {
 		session_start(); 
@@ -42,7 +41,7 @@
 			$item_price = $row['item_price'];
 			$item_stock = $row['item_stock'];
 
-			// TODO: X - get corresponding order id
+			// TODO: (done) - get corresponding order id
 			// populate store_order_items with order
 			$insert_order_items_sql = "INSERT into store_orders_items (
 				order_id, sel_item_id, sel_item_qty, sel_item_color, sel_item_price
@@ -61,6 +60,7 @@
 			$delete_item_res = $mysqli->query($delete_item_sql) or die($mysqli->error);
 
 		}
+		// FIXME
 		// free result sets
 		//$insert_order_res->free();
 		//$adj_sel_item_stock_res->free();

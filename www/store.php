@@ -1,6 +1,6 @@
 <?php
 	// TODO:
-	// X. AJAX implementation: get store items in category from db on click
+	// (done). AJAX implementation: get store items in category from db on click
 
 	// connect to db
 	require 'includes/db.php';
@@ -42,7 +42,6 @@
 	<head>
 		<title>Shop</title>
 		<style><?php include "css/main.css"; ?></style>
-		<script src="js/get_store_items.js"></script>
 	</head>
 	<body>
 		<div id="wrapper">
@@ -53,5 +52,6 @@
 				</div>
 			</div>
 		</div>
+		<script src="js/get_store_items.js"></script>
 	</body>
 </html>
