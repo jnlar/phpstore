@@ -10,6 +10,9 @@ nav ul li { padding-right: 5px; padding-left: 5px; }
 nav ul li a { color: #fff; }
 a { text-decoration: none; }
 a:hover { text-decoration: underline; }
+
+#store-cat { }
+
 #checkout-table { width: 50%; }
 #checkout-table th { background-color: #282828; }
 #checkout-form { padding-top: 25px; }
