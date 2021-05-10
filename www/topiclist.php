@@ -64,10 +64,10 @@
 </head>
 <body>
 	<div id="wrapper">
-		<?php include "nav.php"; ?>
+		<?php include "includes/nav.php"; ?>
 		<div id="inner-wrapper">
 			<h1>Gardening Forum Categories</h1>
-			<?php include "forum_nav.php"; ?>
+			<?php include "includes/forum_nav.php"; ?>
 			<form action='<?php echo htmlspecialchars($_SERVER['PHP_SELF']); ?>' method="POST">
 				<label for="show_category">Pick a category:</label>
 				<select id="show_category" name="show_category">

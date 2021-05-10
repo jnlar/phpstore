@@ -24,10 +24,10 @@
 </head>
 <body>
 	<div id="wrapper">
-		<?php include "nav.php"; ?>
+		<?php include "includes/nav.php"; ?>
 		<div id="inner-wrapper">
 			<h1>Add a Post</h1>
-			<?php include "forum_nav.php"; ?>
+			<?php include "includes/forum_nav.php"; ?>
 			<form method="post" action="do_add_topic.php">
 				<p><label for="select_category">Categories:</label><br/>
 					<select name="select_category">

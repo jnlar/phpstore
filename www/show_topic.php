@@ -96,9 +96,9 @@
 </head>
 <body>
 	<div id="wrapper">
-		<?php include "nav.php"; ?>
+		<?php include "includes/nav.php"; ?>
 		<div id="inner-wrapper">
-		<?php include "forum_nav.php"; ?>
+		<?php include "includes/forum_nav.php"; ?>
 			<h2>Post topic: <?php echo $topic_title; ?></h2>
 			<?php echo $display_block; ?>
 		</div>

@@ -39,9 +39,9 @@
 </head>
 <body>
 	<div id="wrapper">
-		<?php include "nav.php"; ?>
+		<?php include "includes/nav.php"; ?>
 		<div id="inner-wrapper">
-			<?php include "forum_nav.php"; ?>
+			<?php include "includes/forum_nav.php"; ?>
 			<h2>Post your reply in: <a href="show_topic.php?topic_id=<?php echo $topic_id; ?>"><?php echo $topic_title; ?></a></h2>
 			<form method="post" action="<?php echo $_SERVER['PHP_SELF']; ?>">
 				<p><label for="post_owner">Your Email Address:</label><br/>

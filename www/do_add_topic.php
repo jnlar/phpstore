@@ -40,21 +40,3 @@
 	header("Location: show_topic.php?topic_id=" . $topic_id);
 	exit;
 ?>
-<!--<!DOCTYPE html>
-<html lang="en">
-<head>
-	<meta charset="UTF-8">
-	<title>New Topic Added</title>
-	<style><?php include "css/main.css"; ?></style>
-</head>
-<body>
-	<div id="wrapper">
-		<?php include "nav.php"; ?>
-		<div id="inner-wrapper">
-			<?php include "forum_nav.php"; ?>
-			<h1>New Topic Added</h1>
-			<?php echo $display_block; ?>
-		</div>
-	</div>
-</body>
-</html>-->

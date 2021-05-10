@@ -84,10 +84,10 @@
 </head>
 <body>
 	<div id="wrapper">
-		<?php include "nav.php"; ?>
+		<?php include "includes/nav.php"; ?>
 		<div id="inner-wrapper">
 			<h1>Gardening Forum</h1>
-			<?php include "forum_nav.php" ?>
+			<?php include "includes/forum_nav.php" ?>
 			<?php echo $display_block; ?>
 		</div>
 	</div>

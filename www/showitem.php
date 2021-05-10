@@ -115,7 +115,7 @@
 	</head>
 	<body>
 		<div id="wrapper">
-			<?php include "nav.php"; ?>
+			<?php include "includes/nav.php"; ?>
 			<div id="inner-wrapper">
 				<?php echo $display_block; ?>
 			</div>
