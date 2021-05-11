@@ -1,30 +1,25 @@
 <?php
 	require 'includes/db.php';
 
-	// check for required info from the qeuery string
 	if (!isset($_GET['topic_id'])) {
 		header("Location: topiclist.php");
 		exit;
 	}
 
-	// create safe vaules for use
 	$safe_topic_id = mysqli_real_escape_string($mysqli, $_GET['topic_id']);
 
-	// verify topic exists
 	$verify_topic_sql = "SELECT topic_title FROM forum_topics WHERE topic_id = '" . $safe_topic_id . "'";
 	$verify_topic_res = mysqli_query($mysqli, $verify_topic_sql) or die(mysqli_error($mysqli));
 
 	if (mysqli_num_rows($verify_topic_res) < 1) {
-		// topic doesn't exist
 		$display_block = "<p><em>You have selected an invalid topic.<br/>
 			Please <a href=\"topiclist.php\">try again</a>.</em></p>";
 	} else {
-		// get the topic title
+
 		while ($topic_info = mysqli_fetch_array($verify_topic_res)) {
 			$topic_title = stripslashes($topic_info['topic_title']);
 		}
 
-		// gather the posts
 		$get_posts_sql = "SELECT post_id, post_text, DATE_FORMAT(
 			post_create_time, '%b %e %Y<br/>%r') AS fmt_post_create_time, post_owner
 			FROM forum_posts
@@ -75,14 +70,11 @@
 			END_OF_TEXT;
 		}
 
-		// free results
 		mysqli_free_result($get_post_res);
 		mysqli_free_result($verify_topic_res);
 
-		// close connection
 		mysqli_close($mysqli);
 
-		// close table
 		$display_block .= "</table>";
 	}
 ?>
