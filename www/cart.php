@@ -1,25 +1,20 @@
 <?php
 	session_start();
-
-	// connect to db
 	require 'includes/db.php';
 
-	$display_block = "<h1>Your Shopping Cart</h1>";
+	$display_block = "<h2>Your Shopping Cart</h2>";
 
-	// check for cart items based on user session id
 	$get_cart_sql = "SELECT st.id, si.id as sid, si.item_title, si.item_price, si.item_stock, st.sel_item_qty,
 		st.sel_item_color FROM store_shoppertrack AS st
 		LEFT JOIN store_items AS si ON si.id = st.sel_item_id
-		WHERE session_id = '" . $_COOKIE['PHPSESSID'] . "'";
+		WHERE session_id = '" . @$_COOKIE['PHPSESSID'] . "'";
 
 	$get_cart_res = mysqli_query($mysqli, $get_cart_sql) or die(mysqli_error($mysqli));
 	
 	if (mysqli_num_rows($get_cart_res) < 1) {
-		// print message
 		$display_block .= "<p>You have no items in your cart. Please
 			<a href=\"store.php\">continue to shop</a>!</p>";
 	} else {
-		// get info and build cart display
 		$display_block .= <<<EOT
 			<table>
 			<tr>
@@ -53,19 +48,18 @@
 				</tr>
 			EOT;
 		}
+
 		$display_block .= "</table><p><a href=\"store.php\">Continue shopping</a></p>
-			<h2><a href=\"checkout.php?id=" . $_COOKIE['PHPSESSID'] . "\">Checkout</a></h2>";
+			<button><a href=\"checkout.php?id=" . $_COOKIE['PHPSESSID'] . "\">Checkout</a></button>";
 	}
 
-	// free result
 	mysqli_free_result($get_cart_res);
-
-	// close connection to MySQL
 	mysqli_close($mysqli);
 ?>
 <!DOCTYPE html>
 <html lang=en>
 	<head>
+		<?php include "includes/head.php"; ?>
 		<title>My Cart</title>
 		<style><?php include "css/main.css"; ?></style>
 	</head>
@@ -75,6 +69,7 @@
 			<div id="inner-wrapper">
 				<?php echo $display_block; ?>
 			</div>
+			<?php include "includes/footer.php"; ?>
 		</div>
 	</body>
 </html>

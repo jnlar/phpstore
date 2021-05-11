@@ -1,12 +1,9 @@
 <?php
 	session_start();
-
-	// connect to db
 	require 'includes/db.php';
 
-	$display_block = "<h1>My Store - Item Detail</h1>";
+	$display_block = "<h2>My Store - Item Detail</h2>";
 
-	// create safe values for use
 	$safe_item_id = mysqli_real_escape_string($mysqli, $_GET['item_id']);
 
 	// validate item
@@ -18,10 +15,8 @@
 	$get_item_res = mysqli_query($mysqli, $get_item_sql) or die(mysqli_error($mysqli));
 
 	if (mysqli_num_rows($get_item_res) < 1) {
-		// invalid item
 		$display_block .= "<p><em>Invalid item selection.</em></p>";
 	} else {
-		// valid item, return item info
 		while ($item_info = mysqli_fetch_array($get_item_res)) {
 			$cat_id = $item_info['cat_id'];
 			$cat_title = strtoupper(stripslashes($item_info['cat_title']));
@@ -32,7 +27,6 @@
 			$item_image = $item_info['item_image'];
 		}
 
-		// make breadcrumb trail and display of item
 		$display_block .= <<<EOT
 			<p><em>You are viewing:</em></br>
 			<strong><a href="store.php?cat_id=$cat_id">$cat_title</a> &gt;
@@ -66,33 +60,13 @@
 
 		}
 
-		// free colors result set
 		mysqli_free_result($get_colors_res);
 
-		// get sizes
-		//$get_size_sql = "SELECT item_size FROM store_item_size WHERE
-		//	item_id = '".$safe_item_id."' ORDER BY item_size";
-		//$get_size_res = mysqli_query($mysqli, $get_size_sql) or die(mysqli_error($mysqli));
-
-		//if (mysqli_num_rows($get_size_res) > 0) {
-		//	$display_block .= "<p><label for=\"sel_item_size\">
-		//		Available Sizes:</label><br>
-		//		<select id=\"sel_item_size\" name=\"sel_item_size\">";
-
-		//	while ($sizes = mysqli_fetch_array($get_size_res)) {
-		//		$item_size = $sizes['item_size'];
-		//		$display_block .= "<option value=\"" . $item_size . "\">" . $item_size . "</option>";
-		//	}
-		//}
-		$display_block .= "</select></p>";
-
-		// free size result set
-		//mysqli_free_result($get_size_res);
-
-		$display_block .= "<p><label for=\"sel_item_qty\">
+		$display_block .= "</select></p><p><label for=\"sel_item_qty\">
 			Select Quantity:</label><select id=\"sel_item_qty\" name=\"sel_item_qty\">";
 
 		for ($i = 1; $i < $item_stock + 1; $i++) {
+			if ($i == 10) break;
 			$display_block .= "<option value=\"" . $i . "\">" . $i . "</option>";
 		}
 
@@ -104,12 +78,12 @@
 		ENDOFTEXT;
 	}
 
-	// close sql connection
 	mysqli_close($mysqli);
 ?>
 <!DOCTYPE html>
 <html>
 	<head>
+		<?php include "includes/head.php"; ?>
 		<title>My Store</title>
 		<style><?php include "css/main.css"; ?></style>
 	</head>
@@ -119,6 +93,7 @@
 			<div id="inner-wrapper">
 				<?php echo $display_block; ?>
 			</div>
+			<?php include "includes/footer.php"; ?>
 		</div>
 	</body>
 </html>

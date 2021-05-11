@@ -13,12 +13,13 @@
 			<option value="$cur_cat_id">$cur_cat_name</option>
 		END_OF_TEXT;
 	}
+
 	mysqli_free_result($get_categories_res);
 ?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
-	<meta charset="UTF-8">
+	<?php include "includes/head.php"; ?>
 	<title>Add a Topic</title>
 	<style><?php include "css/main.css"; ?></style>
 </head>
@@ -46,6 +47,7 @@
 				</p>
 				<button type="submit" name="submit" value="submit">Add Topic</button>
 			</form>
+			<?php include "includes/footer.php"; ?>
 		</div>
 	</div>
 </body>

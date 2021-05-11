@@ -78,7 +78,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-	<meta charset="UTF-8">
+	<?php include "includes/head.php"; ?>
 	<title>All Topics</title>
 	<style><?php include "css/main.css"; ?></style>
 </head>
@@ -86,10 +86,11 @@
 	<div id="wrapper">
 		<?php include "includes/nav.php"; ?>
 		<div id="inner-wrapper">
-			<h1>Gardening Forum</h1>
+			<h2>Gardening Forum</h2>
 			<?php include "includes/forum_nav.php" ?>
 			<?php echo $display_block; ?>
 		</div>
+		<?php include "includes/footer.php"; ?>
 	</div>
 </body>
 </html>

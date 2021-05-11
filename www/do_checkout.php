@@ -1,14 +1,9 @@
 <?php
-	// TODO: 
-	// (done) - populate store_orders with order information
-	// (done) - adjust value of item_stock in store_items 
-	// (done) - populate store_order_items with order items 
-	// (done) - delete store_shoppertrack records
-	// (done) - Page redirect
+	// TODO:
 	// 1. Free result sets
 
 	if (isset($_POST['submit'])) {
-		session_start(); 
+		session_start();
 		require 'includes/db.php';
 
 		$full_name = $_POST['first-name'] . " " . $_POST['last-name'];
@@ -21,7 +16,7 @@
 		$order_email = $mysqli->real_escape_string($_POST['email']);
 		$order_total = $mysqli->real_escape_string($_POST['total']);
 		$sess_id = $mysqli->real_escape_string($_COOKIE['PHPSESSID']);
-
+		
 		$insert_order_sql = "INSERT into store_orders (
 			id, order_date, order_name, order_address, order_city, order_state, order_zip, order_tel, order_email, item_total, status
 			) VALUES ( NULL, now(), '$order_name', '$order_addr', '$order_city', '$order_state', $order_postcode, $order_tel,
@@ -41,8 +36,6 @@
 			$item_price = $row['item_price'];
 			$item_stock = $row['item_stock'];
 
-			// TODO: (done) - get corresponding order id
-			// populate store_order_items with order
 			$insert_order_items_sql = "INSERT into store_orders_items (
 				order_id, sel_item_id, sel_item_qty, sel_item_color, sel_item_price
 				) VALUES ( $cur_id, $sel_item_id, $sel_item_qty, '$sel_item_color', $item_price )";

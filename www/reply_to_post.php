@@ -33,7 +33,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-	<meta charset="UTF-8">
+	<?php include "includes/head.php"; ?>
 	<title>Post your reply in: <?php echo $topic_title; ?></title>
 	<style><?php include "css/main.css"; ?></style>
 </head>
@@ -53,6 +53,7 @@
 				<button type="submit" name="submit" value="submit">Add Post</button>
 			</form>
 		</div>
+		<?php include "includes/footer.php"; ?>
 	</div>
 </body>
 </html>

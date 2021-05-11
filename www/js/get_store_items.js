@@ -1,4 +1,3 @@
-function gen(name) { return document.getElementsByName(name) }
 function gid(id) { return document.getElementById(id) }
 
 function getItems(catId) {
@@ -10,7 +9,8 @@ function getItems(catId) {
 	xhr.onload = function() {
 		if (this.status == 200) {
 			// FIXME: we should only set style to none for el that's set to block
-			gen('cat-items').forEach(element => element.style.display = 'none' )
+			document.getElementsByName('cat-items').forEach(element => 
+				element.style.display = 'none' )
 
 			gid(catId).innerHTML = this.responseText
 			gid(catId).style.display = 'block'

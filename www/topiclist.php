@@ -58,7 +58,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-	<meta charset="UTF-8">
+	<?php include "includes/head.php"; ?>
 	<title>Topics</title>
 	<style><?php include "css/main.css"; ?></style>
 </head>
@@ -78,6 +78,7 @@
 			</form><br/>
 			<?php if (isset($_POST['submit']) && $_POST['show_category'] !== 'default') echo $display_block; ?>
 		</div>
+		<?php include "includes/footer.php"; ?>
 	</div>
 </body>
 </html>

@@ -1,7 +1,5 @@
 <?php
 	if (isset($_GET['id'])) {
-
-		// connect to db
 		require "includes/db.php";
 
 		// create safe values
@@ -59,6 +57,7 @@
 <!DOCTYPE html>
 <html lang=en>
 	<head>
+		<?php include "includes/head.php"; ?>
 		<title>Checkout</title>
 		<style><?php include "css/main.css"; ?></style>
 	</head>
@@ -68,6 +67,7 @@
 			<div id="inner-wrapper">
 				<?php echo $display_block; ?>
 			</div>
+			<?php include "includes/footer.php"; ?>
 		</div>
 		<script src="js/validate.js"></script>
 	</body>

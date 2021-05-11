@@ -40,6 +40,7 @@
 <!DOCTYPE html>
 <html>
 	<head>
+		<?php include "includes/head.php"; ?>
 		<title>Shop</title>
 		<style><?php include "css/main.css"; ?></style>
 	</head>
@@ -47,10 +48,12 @@
 		<div id="wrapper">
 			<?php include "includes/nav.php"; ?>
 			<div id="inner-wrapper">
+				<h2>Gardening items</h2>
 				<div id="shop-wrapper">
 					<?php echo $display_block; ?>
 				</div>
 			</div>
+			<?php include "includes/footer.php"; ?>
 		</div>
 		<script src="js/get_store_items.js"></script>
 	</body>

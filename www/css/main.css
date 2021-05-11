@@ -1,36 +1,54 @@
-* { list-style-type: none; padding: 0; }
+:root { --green: #459340; --black: #282828; --red: #ff5733; }
+* { list-style-type: none; padding: 0; margin: 0; }
 body { font-family: calibri, arial, monospace; }
-#wrapper { margin: auto; max-width: 1080px; }
+#wrapper { margin: auto; min-width: 460px; max-width: 1080px; }
+#inner-wrapper { padding-top: 20px; min-height: calc(90vh - 10px); }
+h2 { margin-bottom: 20px; }
+p { padding: 5px 0 5px; }
 
-nav { background-color: #009933; }
-nav ul { display: flex; border: 1px solid #282828; padding: 10px; }
-#forum-nav { display: flex; border-bottom: 1px solid #282828; padding-bottom: 10px; }
+nav { background-color: var(--green); margin-top: 10px; }
+nav ul { display: flex; border: 1px solid var(--black); padding: 10px; }
+#forum-nav { display: flex; border-bottom: 1px solid var(--black); padding-bottom: 20px; margin-bottom: 20px; }
 ul li { padding-right: 5px; }
 nav ul li { padding-right: 5px; padding-left: 5px; }
 nav ul li a { color: #fff; }
 a { text-decoration: none; }
 a:hover { text-decoration: underline; }
 
-#store-cat { }
-
+#error-box { 
+	display: none; 
+	width: 50%; 
+	padding: 10px; 
+	background-color: var(--red);
+}
 #checkout-table { width: 50%; }
-#checkout-table th { background-color: #282828; }
+#checkout-table th { background-color: var(--black); }
 #checkout-form { padding-top: 25px; }
 #checkout-form ul li { padding-bottom: 20px; }
 #checkout-form ul li label { display: inline-block; width: 80px; padding-right: 10px; text-align: right; }
-table { border: 1px solid #282828; border-collapse: collapse; width: 100%; }
+table { border: 1px solid var(--black); border-collapse: collapse; width: 100%; }
 th {
-	border: 1px solid #282828;
+	border: 1px solid var(--black);
 	padding: 6px;
 	font-weight: bold;
-	background: #009933;
+	background: var(--green);
 	color: #f7f7f7;
 }
 td {
-	border: 1px solid #282828;
+	border: 1px solid var(--black);
 	padding: 6px;
 	vertical-align: top;
 	text-align: center;
 }
 .topic_cat { text-align: center; }
 .num_posts_col { text-align: center; }
+
+footer { text-align: center; padding: 10px; }
+
+@media screen and (max-width: 480px) {
+	#inner-wrapper { margin: 25px; padding-top: unset; }	
+	#checkout-table { width: 100%; }
+	nav { margin: unset; }
+	nav ul { border: unset; border-bottom: 1px solid var(--black); }
+	#error-box { width: 95%; }
+}

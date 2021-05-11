@@ -90,7 +90,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-	<meta charset="UTF-8">
+	<?php include "includes/head.php"; ?>
 	<title>Posts in: <?php echo $topic_title; ?></title>
 	<style><?php include "css/main.css"; ?></style>
 </head>
@@ -102,6 +102,7 @@
 			<h2>Post topic: <?php echo $topic_title; ?></h2>
 			<?php echo $display_block; ?>
 		</div>
+		<?php include "includes/footer.php"; ?>
 	</div>
 </body>
 </html>
