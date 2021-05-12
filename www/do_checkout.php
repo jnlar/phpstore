@@ -1,6 +1,6 @@
 <?php
 	// TODO:
-	// 1. Free result sets
+	// 1. FREE RESULT SETS
 
 	if (isset($_POST['submit'])) {
 		session_start();
@@ -42,14 +42,10 @@
 
 			$insert_order_items_res = $mysqli->query($insert_order_items_sql) or die($mysqli->error);
 
-			// adjust value of item_stock in store_items
 			$adj_sel_item_stock_sql = "UPDATE store_items SET item_stock = $item_stock - $sel_item_qty WHERE id = $sel_item_id";
 			$adj_sel_item_stock_res = $mysqli->query($adj_sel_item_stock_sql) or die($mysqli->error);
 
-			// delete corresponding store_shoppertrack row from table as we no longer need it
-			$delete_item_sql = "DELETE FROM store_shoppertrack WHERE
-				id = '" . $safe_id . "' and session_id = '$sess_id'";
-
+			$delete_item_sql = "DELETE FROM store_shoppertrack WHERE session_id = '$sess_id'";
 			$delete_item_res = $mysqli->query($delete_item_sql) or die($mysqli->error);
 
 		}
