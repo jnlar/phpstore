@@ -17,9 +17,9 @@
 		$display_block = <<<END_OF_TEXT
 		<table>
 		<tr>
-		<th>TOPIC TITLE</th>
-		<th>TOPIC CATEGORY</th>
-		<th># of POSTS</th>
+		<th scope="col">Topic Title</th>
+		<th scope="col">Topic Category</th>
+		<th scope="col"># of Posts</th>
 		</tr>
 		END_OF_TEXT;
 

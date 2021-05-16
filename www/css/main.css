@@ -1,45 +1,45 @@
-:root { --green: #459340; --black: #282828; --red: #ff5733; }
+:root { --white: #f7f7f7; --blue: rgba(49, 134, 220, 1); --brown: #ac7339; --green: #459340; --black: #282828; --red: #ff5733; --grey: #c8c8c8; --shadow: var(--grey) 4px 4px 0px 0px; }
 * { list-style-type: none; padding: 0; margin: 0; }
 body { font-family: calibri, arial, monospace; }
 #wrapper { margin: auto; min-width: 460px; max-width: 1080px; }
 #inner-wrapper { padding-top: 20px; min-height: calc(90vh - 10px); }
-h2 { margin-bottom: 20px; }
+h2 { margin-bottom: 20px; font-weight: 300; }
 p { padding: 5px 0 5px; }
+button { padding: 15px; border: unset; color: var(--black); background-color: var(--grey); }
+button[type="submit"] { margin-top: 17px; color: var(--black); }
+button:hover { cursor: pointer; color: var(--white); background-color: var(--brown); box-shadow: var(--shadow); }
+select { padding: 10px; border: unset; background-color: var(--grey); }
+input { padding: 8px; border: 1px solid var(--grey); }
+input[type="submit"] { padding: 10px; border: 1px solid var(--grey); }
+input[type="submit"]:hover { cursor: pointer; color: var(--white); background-color: var(--brown); box-shadow: var(--shadow); }
+textarea { border: 1px solid var(--grey); }
+img { border: 1px solid var(--grey); }
+table { border: 1px solid var(--black); border-collapse: collapse; width: 100%; box-shadow: var(--shadow); }
+th { border: 1px solid var(--grey); padding: 6px; font-weight: 300; color: var(--black); background-color: var(--white); }
+td { border: 1px solid var(--grey); padding: 6px; vertical-align: center; text-align: center; }
 
 nav { background-color: var(--green); margin-top: 10px; }
-nav ul { display: flex; border: 1px solid var(--black); padding: 10px; }
-#forum-nav { display: flex; border-bottom: 1px solid var(--black); padding-bottom: 20px; margin-bottom: 20px; }
+nav ul { display: flex; padding: 10px; }
+.sl-nav { display: flex; border-bottom: 1px solid var(--black); padding-bottom: 20px; margin-bottom: 20px; }
+.sl-nav a { padding: 10px; color: var(--black); background-color: var(--grey); }
+.sl-nav a:hover { cursor: pointer; color: var(--white); background-color: var(--brown); text-decoration: none; box-shadow: var(--shadow); }
 ul li { padding-right: 5px; }
 nav ul li { padding-right: 5px; padding-left: 5px; }
 nav ul li a { color: #fff; }
-a { text-decoration: none; }
+a { text-decoration: none; color: var(--blue); }
 a:hover { text-decoration: underline; }
 
-#error-box { 
-	display: none; 
-	width: 50%; 
-	padding: 10px; 
-	background-color: var(--red);
-}
-#checkout-table { width: 50%; }
-#checkout-table th { background-color: var(--black); }
+.item-cat-p:not(:first-child) { padding: 10px 0 10px; }
+.item-cat-p:first-child { padding: 0 0 10px; }
+#show-items { width: 40%; border: 1px solid var(--grey); box-shadow: var(--shadow); }
+.show-items-li { padding: 6px; }
+.show-items-li:not(:last-child) { border-bottom: 1px solid var(--grey); }
+
+#error-box { display: none; width: 50%; padding: 10px; background-color: var(--red); }
 #checkout-form { padding-top: 25px; }
+#checkout-form input { width: 40%; }
 #checkout-form ul li { padding-bottom: 20px; }
 #checkout-form ul li label { display: inline-block; width: 80px; padding-right: 10px; text-align: right; }
-table { border: 1px solid var(--black); border-collapse: collapse; width: 100%; }
-th {
-	border: 1px solid var(--black);
-	padding: 6px;
-	font-weight: bold;
-	background: var(--green);
-	color: #f7f7f7;
-}
-td {
-	border: 1px solid var(--black);
-	padding: 6px;
-	vertical-align: top;
-	text-align: center;
-}
 .topic_cat { text-align: center; }
 .num_posts_col { text-align: center; }
 
@@ -47,8 +47,9 @@ footer { text-align: center; padding: 10px; }
 
 @media screen and (max-width: 480px) {
 	#inner-wrapper { margin: 25px; padding-top: unset; }	
-	#checkout-table { width: 100%; }
-	nav { margin: unset; }
-	nav ul { border: unset; border-bottom: 1px solid var(--black); }
+	#checkout-form { text-align: center; }
+	#checkout-form input { width: 70%; }
+	#show-items { width: 100%; }
+	nav { margin: unset; box-shadow: unset; }
 	#error-box { width: 95%; }
 }

@@ -1,4 +1,6 @@
 <?php
+/* TODO: Insert description here 
+ * */
 	if (isset($_GET['q'])) {
 		require 'includes/db.php';
 
@@ -13,19 +15,19 @@
 		if ($get_items_res->num_rows < 1) {
 			$display_block = "<p><em>Sorry, no items in this category.</em></p>";
 		} else {
-			$display_block = "<ul>";
+			$display_block = "<div id=\"show-items\"><ul>";
 
 			while ($row = $get_items_res->fetch_assoc()) {
 				$item_id = $row['id'];
 				$item_title = stripslashes($row['item_title']);
 				$item_price = $row['item_price'];
 
-				$display_block .="<li><a 
+				$display_block .="<li class=\"show-items-li\"><a 
 					href=\"showitem.php?item_id=" . $item_id . "\">" . $item_title . "
 					</a> (\$" . $item_price . ")</li>";
 			}
 
-			$display_block .= "</ul>";
+			$display_block .= "</ul></div>";
 			$get_items_res->free_result();
 			echo $display_block;
 		}

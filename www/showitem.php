@@ -2,7 +2,10 @@
 	session_start();
 	require 'includes/db.php';
 
-	$display_block = "<h2>My Store - Item Detail</h2>";
+	$display_block = "<h2>My Store - Item Detail</h2>
+		<ul class=sl-nav>
+		<li><a href=\"store.php\">Continue shopping</a></li>
+		<li><a href=\"cart.php\">Cart</a></li></ul>";
 
 	$safe_item_id = mysqli_real_escape_string($mysqli, $_GET['item_id']);
 
@@ -28,10 +31,9 @@
 		}
 
 		$display_block .= <<<EOT
-			<p><em>You are viewing:</em></br>
-			<strong><a href="store.php?cat_id=$cat_id">$cat_title</a> &gt;
-			$item_title</strong></p>
-			<div style="float: left;"><img src="$item_image" alt="$item_title"></div>
+			<p><em>You are viewing:</em>
+			<strong>$item_title</strong></p>
+			<div style="float: left;"><img src="images/$item_image" alt="$item_title"width="150" height="200"></div>
 			<div style="float: left; padding-left: 12px">
 			<p><strong>Description:</strong></br>$item_desc</p>
 			<p><strong>Price:</strong>\$$item_price</p>

@@ -1,0 +1,9 @@
+garlic: https://unsplash.com/photos/sw_6FOp0bi0
+strawberry: https://unsplash.com/photos/eY2xn59BSyM
+sunflower: https://unsplash.com/photos/H7I5LCBWOjQ
+compost: https://unsplash.com/photos/BduDcrySLKM
+cow: https://en.wikipedia.org/wiki/Manure#/media/File:NRCSAR02028_-_Arkansas_(239)(NRCS_Photo_Gallery).jpg
+soil: https://unsplash.com/photos/71uUjIt3cIs
+fork: https://en.wikipedia.org/wiki/Garden_fork#/media/File:CompostBinTube_wb.jpg
+hoe: https://unsplash.com/photos/gKRXUk6tdL4
+shovel: https://en.wikipedia.org/wiki/Shovel#/media/File:Aa_shovel01.jpg

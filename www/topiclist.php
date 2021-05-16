@@ -22,8 +22,8 @@
 		$display_block = <<<END_OF_TEXT
 			<table>
 			<tr>
-			<th>TOPIC TITLE</th>
-			<th># of POSTS</th>
+			<th scope="col">Topic Title</th>
+			<th scope="col"># of Posts</th>
 			</tr>
 		END_OF_TEXT;
 
@@ -66,7 +66,7 @@
 	<div id="wrapper">
 		<?php include "includes/nav.php"; ?>
 		<div id="inner-wrapper">
-			<h1>Gardening Forum Categories</h1>
+			<h2>Gardening Forum Categories</h2>
 			<?php include "includes/forum_nav.php"; ?>
 			<form action='<?php echo htmlspecialchars($_SERVER['PHP_SELF']); ?>' method="POST">
 				<label for="show_category">Pick a category:</label>

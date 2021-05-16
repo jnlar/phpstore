@@ -95,15 +95,15 @@ insert into store_categories values (2, 'Seeds', 'Our assortment of vegetable, f
 insert into store_categories values (3, 'Soils', 'Compost, manure & top soils');
 
 -- inserting store items
-insert into store_items values (1, 1, 'Square Shovel', 35.00, 'Designed for digging in hard-packed soils', 8, 'squareshovel.gif');
-insert into store_items values (2, 1, 'Garden Fork', 15.00, 'Used for breaking up, lifting and turning over soil.', 5, 'gardenfork.gif');
-insert into store_items values (3, 1, 'Hoe', 35.00, 'Used for cultivating soil, removing weeds and breaking up clumped soil.', 6, 'hoe.gif');
-insert into store_items values (4, 2, 'Sunflower Flower Seeds', 4.95, 'Blooms multiple heads with bi-colour petals', 4, 'sunflower.gif');
-insert into store_items values (5, 2, 'Garlic Chive Herb Seeds', 4.95, 'Garlic chives have a mild flavor and are fantastic in salads!', 9, 'garlicchive.gif');
-insert into store_items values (6, 2, 'Red and White Strawberry Seeds', 4.95, 'Fruits within the first year! these are surprisingly sweet.', 15, 'strawberry.gif');
-insert into store_items values (7, 3, "Cow Manure", 8.50, 'This manure assists with soil moisture, structure and earthworm activity.', 13, 'manure.gif');
-insert into store_items values (8, 3, "Top Soil", 10.15, 'Quick, easy solution to build up and rejuvenate garden beds.', 7, 'topsoil.gif');
-insert into store_items values (9, 3, "Compost", 9.00, 'Ideal for improving soil, helping it hold nutrients and water..', 11, 'compost.gif');
+insert into store_items values (1, 1, 'Square Shovel', 35.00, 'Designed for digging in hard-packed soils', 8, 'shovel.png');
+insert into store_items values (2, 1, 'Garden Fork', 15.00, 'Used for breaking up, lifting and turning over soil.', 5, 'fork.png');
+insert into store_items values (3, 1, 'Hoe', 35.00, 'Used for cultivating soil, removing weeds and breaking up clumped soil.', 6, 'hoe.png');
+insert into store_items values (4, 2, 'Sunflower Flower Seeds', 4.95, 'Blooms multiple heads with bi-colour petals', 4, 'sunflower.png');
+insert into store_items values (5, 2, 'Garlic Chive Herb Seeds', 4.95, 'Garlic chives have a mild flavor and are fantastic in salads!', 9, 'garlic.png');
+insert into store_items values (6, 2, 'Red and White Strawberry Seeds', 4.95, 'Fruits within the first year! these are surprisingly sweet.', 15, 'strawberry.png');
+insert into store_items values (7, 3, "Cow Manure", 8.50, 'This manure assists with soil moisture, structure and earthworm activity.', 13, 'manure.png');
+insert into store_items values (8, 3, "Top Soil", 10.15, 'Quick, easy solution to build up and rejuvenate garden beds.', 7, 'soil.png');
+insert into store_items values (9, 3, "Compost", 9.00, 'Ideal for improving soil, helping it hold nutrients and water..', 11, 'compost.png');
 
 --inserting into store item color
 insert into store_item_color (item_id, item_color) values (1, 'black');

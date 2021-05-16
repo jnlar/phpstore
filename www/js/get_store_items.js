@@ -8,7 +8,6 @@ function getItems(catId) {
 
 	xhr.onload = function() {
 		if (this.status == 200) {
-			// FIXME: we should only set style to none for el that's set to block
 			document.getElementsByName('cat-items').forEach(element => 
 				element.style.display = 'none' )
 

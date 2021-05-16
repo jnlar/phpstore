@@ -47,8 +47,8 @@
 			<p>Category: <strong>$cat_title</strong></p>
 			<table>
 			<tr>
-			<th>AUTHOR</th>
-			<th>POST</th>
+			<th scope="col">AUTHOR</th>
+			<th scope="col">POST</th>
 			</tr>
 		END_OF_TEXT;
 
@@ -90,8 +90,8 @@
 	<div id="wrapper">
 		<?php include "includes/nav.php"; ?>
 		<div id="inner-wrapper">
-		<?php include "includes/forum_nav.php"; ?>
 			<h2>Post topic: <?php echo $topic_title; ?></h2>
+			<?php include "includes/forum_nav.php"; ?>
 			<?php echo $display_block; ?>
 		</div>
 		<?php include "includes/footer.php"; ?>

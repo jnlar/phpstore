@@ -35,8 +35,9 @@
 	<div id="wrapper">
 		<?php include "includes/nav.php"; ?>
 		<div id="inner-wrapper">
+			<h2>Reply to: <?php echo $topic_title; ?></h2>
 			<?php include "includes/forum_nav.php"; ?>
-			<h2>Post your reply in: <a href="show_topic.php?topic_id=<?php echo $topic_id; ?>"><?php echo $topic_title; ?></a></h2>
+			<p><a href="show_topic.php?topic_id=<?php echo $topic_id; ?>">Back to post</a></p>
 			<form method="post" action="<?php echo $_SERVER['PHP_SELF']; ?>">
 				<p><label for="post_owner">Your Email Address:</label><br/>
 				<input type="email" id="post_owner" name="post_owner" size="40" maxlength="150" required="required"></p>

@@ -1,7 +1,4 @@
 <?php
-	// TODO:
-	// 1. FREE RESULT SETS
-
 	if (isset($_POST['submit'])) {
 		session_start();
 		require 'includes/db.php';
@@ -47,14 +44,9 @@
 
 			$delete_item_sql = "DELETE FROM store_shoppertrack WHERE session_id = '$sess_id'";
 			$delete_item_res = $mysqli->query($delete_item_sql) or die($mysqli->error);
-
 		}
-		// FIXME
-		// free result sets
-		//$insert_order_res->free();
-		//$adj_sel_item_stock_res->free();
-		//$get_sel_order_res->free();
-		//$insert_order_items_res->free();
+
+		$get_sel_order_res->free();
 
 		header('Location: store.php');
 		session_destroy();

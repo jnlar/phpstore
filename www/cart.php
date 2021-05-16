@@ -2,12 +2,13 @@
 	session_start();
 	require 'includes/db.php';
 
+	$sess_id = @$_COOKIE['PHPSESSID'];
 	$display_block = "<h2>Your Shopping Cart</h2>";
 
 	$get_cart_sql = "SELECT st.id, si.id as sid, si.item_title, si.item_price, si.item_stock, st.sel_item_qty,
 		st.sel_item_color FROM store_shoppertrack AS st
 		LEFT JOIN store_items AS si ON si.id = st.sel_item_id
-		WHERE session_id = '" . @$_COOKIE['PHPSESSID'] . "'";
+		WHERE session_id = '$sess_id'";
 
 	$get_cart_res = mysqli_query($mysqli, $get_cart_sql) or die(mysqli_error($mysqli));
 	
@@ -16,14 +17,17 @@
 			<a href=\"store.php\">continue to shop</a>!</p>";
 	} else {
 		$display_block .= <<<EOT
+			<ul class=sl-nav>
+			<li><a href="store.php">Continue shopping</a></li>
+			<li><a href="checkout.php?id=$sess_id">Checkout</a></li></ul>
 			<table>
 			<tr>
-			<th>Title</th>
-			<th>Color</th>
-			<th>Price</th>
-			<th>Qty</th>
-			<th>Total Price</th>
-			<th>Action</th>
+			<th scope="col">Title</th>
+			<th scope="col">Color</th>
+			<th scope="col">Price</th>
+			<th scope="col">Qty</th>
+			<th scope="col">Total Price</th>
+			<th scope="col">Action</th>
 			</tr>
 		EOT;
 
@@ -49,8 +53,7 @@
 			EOT;
 		}
 
-		$display_block .= "</table><p><a href=\"store.php\">Continue shopping</a></p>
-			<button><a href=\"checkout.php?id=" . $_COOKIE['PHPSESSID'] . "\">Checkout</a></button>";
+		$display_block .= "</table>";
 	}
 
 	mysqli_free_result($get_cart_res);
