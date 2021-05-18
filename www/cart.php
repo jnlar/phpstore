@@ -10,9 +10,9 @@
 		LEFT JOIN store_items AS si ON si.id = st.sel_item_id
 		WHERE session_id = '$sess_id'";
 
-	$get_cart_res = mysqli_query($mysqli, $get_cart_sql) or die(mysqli_error($mysqli));
+	$get_cart_res = $mysqli->query($get_cart_sql) or die($mysqli->error);
 	
-	if (mysqli_num_rows($get_cart_res) < 1) {
+	if ($get_cart_res->num_rows < 1) {
 		$display_block .= "<p>You have no items in your cart. Please
 			<a href=\"store.php\">continue to shop</a>!</p>";
 	} else {
@@ -31,7 +31,7 @@
 			</tr>
 		EOT;
 
-		while ($cart_info = mysqli_fetch_array($get_cart_res)) {
+		while ($cart_info = $get_cart_res->fetch_assoc()) {
 			$id = $cart_info['id'];
 			$st_i_id = $cart_info['sid'];
 			$item_title = stripslashes($cart_info['item_title']);
@@ -56,8 +56,8 @@
 		$display_block .= "</table>";
 	}
 
-	mysqli_free_result($get_cart_res);
-	mysqli_close($mysqli);
+	$get_cart_res->free_result();
+	$mysqli->close();
 ?>
 <!DOCTYPE html>
 <html lang=en>

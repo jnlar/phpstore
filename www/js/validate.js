@@ -4,7 +4,8 @@ function validateForm() {
 	let errors = []
 
 	const letterRegex = /^[a-z]+$/i
-	const alphanumericRegex = /^[a-z0-9]+$/i
+	//const alphanumericRegex = /^[a-z0-9]+$/i
+	const alphanumericRegex = /^[\w\-\s]+$/
 	// matches exactly 4 occurances of any base 10 digit e.g 1234 2378 2345
 	const postcodeRegex = /^[0-9]{4}$/
 	// credit: https://stackoverflow.com/questions/39990179/regex-for-australian-phone-number-validation
@@ -26,8 +27,8 @@ function validateForm() {
 		errors.push('ERROR: Please enter an address!')
 	}
 
-	if (!gid('city').value.match(letterRegex) || gid('city').value == '') errors.push('ERROR: Please a valid city!')
-	if (!gid('state').value.match(letterRegex) || gid('state').value == '') errors.push('ERROR: Please a valid state!')
+	if (!gid('city').value.match(letterRegex) || gid('city').value == '') errors.push('ERROR: Please a enter valid city!')
+	if (!gid('state').value.match(letterRegex) || gid('state').value == '') errors.push('ERROR: Please a enter valid state!')
 	if (!gid('postcode').value.match(postcodeRegex)) errors.push('ERROR: Please enter a valid postcode!')
 	if (!gid('tel').value.match(telRegex)) errors.push('ERROR: Please enter a valid telephone number!')
 	if (!gid('email').value.match(emailRegex)) errors.push('ERROR: Please enter a valid email address!')

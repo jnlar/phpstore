@@ -7,7 +7,7 @@
 		<li><a href=\"store.php\">Continue shopping</a></li>
 		<li><a href=\"cart.php\">Cart</a></li></ul>";
 
-	$safe_item_id = mysqli_real_escape_string($mysqli, $_GET['item_id']);
+	$safe_item_id = $mysqli->real_escape_string($_GET['item_id']);
 
 	// validate item
 	$get_item_sql = "SELECT c.id as cat_id, c.cat_title, si.item_title,
@@ -15,12 +15,12 @@
 		LEFT JOIN store_categories AS c on c.id = si.cat_id
 		WHERE si.id = '".$safe_item_id."'";
 
-	$get_item_res = mysqli_query($mysqli, $get_item_sql) or die(mysqli_error($mysqli));
+	$get_item_res = $mysqli->query($get_item_sql) or die($mysqli->error);
 
-	if (mysqli_num_rows($get_item_res) < 1) {
+	if ($get_item_res->num_rows < 1) {
 		$display_block .= "<p><em>Invalid item selection.</em></p>";
 	} else {
-		while ($item_info = mysqli_fetch_array($get_item_res)) {
+		while ($item_info = $get_item_res->fetch_assoc()) {
 			$cat_id = $item_info['cat_id'];
 			$cat_title = strtoupper(stripslashes($item_info['cat_title']));
 			$item_title = stripslashes($item_info['item_title']);
@@ -41,20 +41,20 @@
 			EOT;
 
 		// free result set
-		mysqli_free_result($get_item_res);
+		$get_item_res->free_result();
 
 		// get colors
 		$get_colors_sql = "SELECT item_color FROM store_item_color WHERE
 			item_id = '".$safe_item_id."' ORDER BY item_color";
 
-		$get_colors_res = mysqli_query($mysqli, $get_colors_sql) or die(mysqli_error($mysqli));
+		$get_colors_res = $mysqli->query($get_colors_sql) or die($mysqli->error);
 
-		if (mysqli_num_rows($get_colors_res) > 0) {
+		if ($get_colors_res->num_rows > 0) {
 			$display_block .= "<p><label for=\"sel_item_color\">
 				Available Colors:</label><br/>
 				<select id=\"sel_item_color\" name=\"sel_item_color\">";
 
-			while ($colors = mysqli_fetch_array($get_colors_res)) {
+			while ($colors = $get_colors_res->fetch_assoc()) {
 				$item_color = $colors['item_color'];
 				$display_block .= "<option value=\"" . $item_color . "\">" . $item_color . "</option>";
 			}
@@ -62,7 +62,7 @@
 
 		}
 
-		mysqli_free_result($get_colors_res);
+		$get_colors_res->free_result();
 
 		$display_block .= "</select></p><p><label for=\"sel_item_qty\">
 			Select Quantity:</label><select id=\"sel_item_qty\" name=\"sel_item_qty\">";
@@ -80,7 +80,7 @@
 		ENDOFTEXT;
 	}
 
-	mysqli_close($mysqli);
+	$mysqli->close();
 ?>
 <!DOCTYPE html>
 <html>

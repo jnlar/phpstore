@@ -2,7 +2,7 @@
 	require 'includes/db.php';
 
 	$get_cats_sql = "SELECT id, cat_title, cat_desc FROM store_categories ORDER BY cat_title";
-	$get_cats_res = mysqli_query($mysqli, $get_cats_sql) or die(mysqli_error($mysqli));
+	$get_cats_res = $mysqli->query($get_cats_sql) or die($mysqli->error);
 
 	if (@$_COOKIE['PHPSESSID']) {
 		$sess_id = $_COOKIE['PHPSESSID'];
@@ -12,10 +12,10 @@
 	$display_block = "<ul class=sl-nav>
 			<li><a href=\"cart.php\">Cart</a></li>$can_checkout</ul>";
 
-	if (mysqli_num_rows($get_cats_res) < 1) {
+	if ($get_cats_res->num_rows < 1) {
 		$display_block .= "<p><em>Sorry, no categories to browse.</em></p>";
 	} else {
-		while ($categories = mysqli_fetch_array($get_cats_res)) {
+		while ($categories = $get_cats_res->fetch_assoc()) {
 			$cat_id = $categories['id'];
 			$cat_title = stripslashes($categories['cat_title']);
 			$cat_desc = stripslashes($categories['cat_desc']);
@@ -27,8 +27,8 @@
 		}
 	}
 
-	mysqli_free_result($get_cats_res);
-	mysqli_close($mysqli);
+	$get_cats_res->free_result();
+	$mysqli->close();
 ?>
 <!DOCTYPE html>
 <html>

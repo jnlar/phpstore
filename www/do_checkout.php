@@ -16,7 +16,7 @@
 		
 		$insert_order_sql = "INSERT into store_orders (
 			id, order_date, order_name, order_address, order_city, order_state, order_zip, order_tel, order_email, item_total, status
-			) VALUES ( NULL, now(), '$order_name', '$order_addr', '$order_city', '$order_state', $order_postcode, $order_tel,
+			) VALUES ( NULL, now(), '$order_name', '$order_addr', '$order_city', '$order_state', $order_postcode, '$order_tel',
 			'$order_email', $order_total, 'processed' )";
 
 		$insert_order_res = $mysqli->query($insert_order_sql) or die($mysqli->error);
@@ -46,7 +46,7 @@
 			$delete_item_res = $mysqli->query($delete_item_sql) or die($mysqli->error);
 		}
 
-		$get_sel_order_res->free();
+		$get_sel_order_res->free_result();
 
 		header('Location: store.php');
 		session_destroy();

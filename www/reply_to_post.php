@@ -6,19 +6,19 @@
 			header("Location: topiclist.php");
 			exit;
 		}
-		$safe_post_id = mysqli_real_escape_string($mysqli, $_GET['post_id']);
+		$safe_post_id = $mysqli->real_escape_string($_GET['post_id']);
 
 		$verify_sql = "SELECT ft.topic_id, ft.topic_title, ft.category_id FROM forum_posts
 			AS fp LEFT JOIN forum_topics AS ft on fp.topic_id = ft.topic_id 
 			WHERE fp.post_id = '$safe_post_id'";
 
-		$verify_res = mysqli_query($mysqli, $verify_sql) or die(mysqli_error($mysqli));
+		$verify_res = $mysqli->query($verify_sql) or die($mysqli->error);
 
-		if (mysqli_num_rows($verify_res) < 1) {
+		if ($verify_res->num_rows < 1) {
 			header("Location: topiclist.php");
 			exit;
 		} else  {
-			while ($topic_info = mysqli_fetch_array($verify_res)) {
+			while ($topic_info = $verify_res->fetch_assoc()) {
 				$cat_id = $topic_info['category_id'];
 				$topic_id = $topic_info['topic_id'];
 				$topic_title = stripslashes($topic_info['topic_title']);
@@ -55,25 +55,25 @@
 <?php
 		}
 
-		mysqli_free_result($verify_res);
-		mysqli_close($mysqli);
+		$verify_res->free_result();
+		$mysqli->close();
 	} else if ($_POST) {
 		if ((!$_POST['topic_id']) || (!$_POST['post_text']) || (!$_POST['post_owner'])) {
 			header("Location: topiclist.php");
 			exit;
 		}
 
-		$safe_topic_id = mysqli_real_escape_string($mysqli, $_POST['topic_id']);
-		$safe_cat_id = mysqli_real_escape_string($mysqli, $_POST['cat_id']);
-		$safe_post_text = mysqli_real_escape_string($mysqli, $_POST['post_text']);
-		$safe_post_owner = mysqli_real_escape_string($mysqli, $_POST['post_owner']);
+		$safe_topic_id = $mysqli->real_escape_string($_POST['topic_id']);
+		$safe_cat_id = $mysqli->real_escape_string($_POST['cat_id']);
+		$safe_post_text = $mysqli->real_escape_string($_POST['post_text']);
+		$safe_post_owner = $mysqli->real_escape_string($_POST['post_owner']);
 
 		$add_post_sql = "INSERT INTO forum_posts (topic_id, post_text, post_create_time, post_owner, category_id)
 			VALUES('$safe_topic_id', '$safe_post_text', NOW(), '$safe_post_owner', '$safe_cat_id')";
 
-		$add_post_res = mysqli_query($mysqli, $add_post_sql) or die(mysqli_error($mysqli));
+		$add_post_res = $mysqli->query($add_post_sql) or die($mysqli->error);
 
-		mysqli_close($mysqli);
+		$mysqli->close();
 
 		header("Location: show_topic.php?topic_id=" . $_POST['topic_id']);
 		exit;

@@ -5,25 +5,25 @@
 		require 'includes/db.php';
 
 		// create safe values for use
-		$safe_sel_item_id = mysqli_real_escape_string($mysqli, $_POST['sel_item_id']);
-		$safe_sel_item_qty = mysqli_real_escape_string($mysqli, $_POST['sel_item_qty']);
-		$safe_sel_item_color = mysqli_real_escape_string($mysqli, $_POST['sel_item_color']);
+		$safe_sel_item_id = $mysqli->real_escape_string($_POST['sel_item_id']);
+		$safe_sel_item_qty = $mysqli->real_escape_string($_POST['sel_item_qty']);
+		$safe_sel_item_color = $mysqli->real_escape_string($$_POST['sel_item_color']);
 
 		$get_iteminfo_sql = "SELECT * FROM store_items WHERE id = '" . $safe_sel_item_id . "'";
-		$get_iteminfo_res = mysqli_query($mysqli, $get_iteminfo_sql) or die(mysqli_error($mysqli));
+		$get_iteminfo_res = $mysqli->query($get_iteminfo_sql) or die($mysqli->error);
 
-		if (mysqli_num_rows($get_iteminfo_res) < 1) {
-			mysqli_free_result($get_iteminfo_res);
-			mysqli_close($mysqli);
+		if ($get_iteminfo_res->num_rows < 1) {
+			$get_iteminfo_res->free_result();
+			$mysqli->close();
 
 			header('Location: store.php');
 			exit;
 		} else {
-			while ($item_info = mysqli_fetch_array($get_iteminfo_res)) {
+			while ($item_info = $get_iteminfo_res->fetch_assoc()) {
 				$item_title = stripslashes($item_info['item_title']);
 			}
 
-			mysqli_free_result($get_iteminfo_res);
+			$get_iteminfo_res->free_result();
 
 			if ($safe_sel_item_color === '') $safe_sel_item_color = 'n/a';
 
@@ -34,9 +34,9 @@
 				'" . $safe_sel_item_qty . "', 
 				'" . $safe_sel_item_color . "', now())";
 
-			$addtocart_res = mysqli_query($mysqli, $addtocart_sql) or die (mysqli_error($mysqli));
+			$addtocart_res = $mysqli->query($addtocart_sql) or die ($mysqli->error);
 
-			mysqli_close($mysqli);
+			$mysqli->close();
 
 			header('Location: cart.php');
 			exit;

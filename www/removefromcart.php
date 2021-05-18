@@ -4,14 +4,14 @@
 	if (isset($_GET['id'])) {
 		require 'includes/db.php';
 
-		$safe_id = mysqli_real_escape_string($mysqli, $_GET['id']);
+		$safe_id = $mysqli->real_escape_string($_GET['id']);
 
 		$delete_item_sql = "DELETE FROM store_shoppertrack WHERE
 			id = '" . $safe_id . "' and session_id = '" . $_COOKIE['PHPSESSID'] . "'";
 
-		$delete_item_res = mysqli_query($mysqli, $delete_item_sql) or die (mysqli_error($mysqli));
+		$delete_item_res = $mysqli->query($delete_item_sql) or die ($mysqli->error);
 
-		mysqli_close($mysqli);
+		$mysqli->close();
 
 		header('Location: cart.php');
 	} else {

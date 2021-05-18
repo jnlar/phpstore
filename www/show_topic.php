@@ -6,17 +6,17 @@
 		exit;
 	}
 
-	$safe_topic_id = mysqli_real_escape_string($mysqli, $_GET['topic_id']);
+	$safe_topic_id = $mysqli->real_escape_string($_GET['topic_id']);
 
 	$verify_topic_sql = "SELECT topic_title FROM forum_topics WHERE topic_id = '" . $safe_topic_id . "'";
-	$verify_topic_res = mysqli_query($mysqli, $verify_topic_sql) or die(mysqli_error($mysqli));
+	$verify_topic_res = $mysqli->query($verify_topic_sql) or die($mysqli->error);
 
-	if (mysqli_num_rows($verify_topic_res) < 1) {
+	if ($verify_topic_res->num_rows < 1) {
 		$display_block = "<p><em>You have selected an invalid topic.<br/>
 			Please <a href=\"topiclist.php\">try again</a>.</em></p>";
 	} else {
 
-		while ($topic_info = mysqli_fetch_array($verify_topic_res)) {
+		while ($topic_info = $verify_topic_res->fetch_assoc()) {
 			$topic_title = stripslashes($topic_info['topic_title']);
 		}
 
@@ -26,19 +26,19 @@
 			WHERE topic_id = '$safe_topic_id'
 			ORDER BY post_create_time ASC";
 
-		$get_post_res = mysqli_query($mysqli, $get_posts_sql) or die(mysqli_error($mysqli));
+		$get_post_res = $mysqli->query($get_posts_sql) or die($mysqli->error);
 
 		$get_post_cat_sql = "SELECT category_id FROM forum_posts WHERE topic_id = $safe_topic_id";
-		$get_post_cat_res = mysqli_query($mysqli, $get_post_cat_sql) or die(mysqli_error($mysqli));
+		$get_post_cat_res = $mysqli->query($get_post_cat_sql) or die($mysqli->error);
 
-		while ($post_cat = mysqli_fetch_array($get_post_cat_res)) {
+		while ($post_cat = $get_post_cat_res->fetch_assoc()) {
 			$post_category = stripslashes($post_cat['category_id']);
 		}
 
 		$get_cat_name_sql = "SELECT category_name FROM forum_categories WHERE category_id = $post_category";
-		$get_cat_name_res = mysqli_query($mysqli, $get_cat_name_sql) or die(mysqli_error($mysqli));
+		$get_cat_name_res = $mysqli->query($get_cat_name_sql) or die($mysqli->error);
 
-		while ($cat_info = mysqli_fetch_array($get_cat_name_res)) {
+		while ($cat_info = $get_cat_name_res->fetch_assoc()) {
 			$cat_title = stripslashes($cat_info['category_name']);
 		}
 
@@ -52,7 +52,7 @@
 			</tr>
 		END_OF_TEXT;
 
-		while ($posts_info = mysqli_fetch_array($get_post_res)) {
+		while ($posts_info = $get_post_res->fetch_assoc()) {
 			$post_id = $posts_info['post_id'];
 			$post_text = nl2br(stripslashes($posts_info['post_text']));
 			$post_create_time = $posts_info['fmt_post_create_time'];
@@ -70,10 +70,10 @@
 			END_OF_TEXT;
 		}
 
-		mysqli_free_result($get_post_res);
-		mysqli_free_result($verify_topic_res);
+		$get_post_res->free_result();
+		$verify_topic_res->free_result();
 
-		mysqli_close($mysqli);
+		$mysqli->close();
 
 		$display_block .= "</table>";
 	}
