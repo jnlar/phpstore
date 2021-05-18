@@ -10,7 +10,7 @@ button[type="submit"] { margin-top: 17px; color: var(--black); }
 button:hover { cursor: pointer; color: var(--white); background-color: var(--brown); box-shadow: var(--shadow); }
 select { padding: 10px; border: unset; background-color: var(--grey); }
 input { padding: 8px; border: 1px solid var(--grey); }
-input[type="submit"] { padding: 10px; border: 1px solid var(--grey); }
+input[type="submit"] { background-color: var(--grey); color: var(--black); padding: 10px; }
 input[type="submit"]:hover { cursor: pointer; color: var(--white); background-color: var(--brown); box-shadow: var(--shadow); }
 textarea { border: 1px solid var(--grey); }
 img { border: 1px solid var(--grey); }

@@ -1,3 +1,6 @@
+all unsplash images inherit the unsplash license: https://unsplash.com/license
+all wikipedia images inhert the CC BY-SA 4.0 license: https://creativecommons.org/licenses/by-sa/4.0/
+
 garlic: https://unsplash.com/photos/sw_6FOp0bi0
 strawberry: https://unsplash.com/photos/eY2xn59BSyM
 sunflower: https://unsplash.com/photos/H7I5LCBWOjQ
