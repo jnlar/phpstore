@@ -10,7 +10,7 @@ function validateForm() {
 	const postcodeRegex = /^[0-9]{4}$/
 	// credit: https://stackoverflow.com/questions/39990179/regex-for-australian-phone-number-validation
 	// regular expression explained: https://regex101.com/r/dkFASs/6
-	const telRegex = /^(?:\+?(61))? ?(?:\((?=.*\)))?(0?[2-57-8])\)? ?(\d\d(?:[- ](?=\d{3})|(?!\d\d[- ]?\d[- ]))\d\d[- ]?\d[- ]?\d{3})$/
+	const telRegex = /^(\+?\(61\)|\(\+?61\)|\+?61|\s\(0[1-9]\)|0[1-9])?( ?-?[0-9]){7,9}$/
 	// credit: https://www.w3resource.com/javascript/form/email-validation.php
 	// regular expression explained: https://regex101.com/r/46ITmE/1
 	const emailRegex = /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/

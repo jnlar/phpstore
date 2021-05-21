@@ -2,8 +2,13 @@
 	session_start();
 	require 'includes/db.php';
 
-	$sess_id = @$_COOKIE['PHPSESSID'];
-	$display_block = "<h2>Your Shopping Cart</h2>";
+	$sess_id = $_COOKIE['PHPSESSID'];
+	$display_block = <<<EOT
+		<h2>Your Shopping Cart</h2>
+		<ul class=sl-nav>
+		<li><a href="store.php">Continue shopping</a></li>
+		<li><a href="checkout.php?id=$sess_id">Checkout</a></li></ul>
+	EOT;
 
 	$get_cart_sql = "SELECT st.id, si.id as sid, si.item_title, si.item_price, si.item_stock, st.sel_item_qty,
 		st.sel_item_color FROM store_shoppertrack AS st
@@ -17,10 +22,7 @@
 			<a href=\"store.php\">continue to shop</a>!</p>";
 	} else {
 		$display_block .= <<<EOT
-			<ul class=sl-nav>
-			<li><a href="store.php">Continue shopping</a></li>
-			<li><a href="checkout.php?id=$sess_id">Checkout</a></li></ul>
-			<table>
+			<div id="cart-container"><table>
 			<tr>
 			<th scope="col">Title</th>
 			<th scope="col">Color</th>
@@ -48,12 +50,12 @@
 				<td>\$ $item_price</td>
 				<td>$item_qty</td>
 				<td>\$ $total_price</td>
-				<td><a href="removefromcart.php?id=$id&amp;sid=$st_i_id&amp;stock=$item_stock&amp;qty=$item_qty">remove</a></td>
+				<td><i onclick="Ajax.removeItem($id)" class="fa fa-trash-alt"></i></td>
 				</tr>
 			EOT;
 		}
 
-		$display_block .= "</table>";
+		$display_block .= "</table></div>";
 	}
 
 	$get_cart_res->free_result();
@@ -65,6 +67,7 @@
 		<?php include "includes/head.php"; ?>
 		<title>My Cart</title>
 		<style><?php include "css/main.css"; ?></style>
+		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" integrity="sha512-iBBXm8fW90+nuLcSKlbmrPcLa0OT92xO1BIsZ+ywDWZCvqsWgccV3gFoRBv0z+8dLJgyAHIhR35VZc2oM/gI1w==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 	</head>
 	<body>
 		<div id="wrapper">
@@ -74,5 +77,6 @@
 			</div>
 			<?php include "includes/footer.php"; ?>
 		</div>
+	<script src="js/ajax.js"></script>
 	</body>
 </html>

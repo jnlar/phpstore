@@ -2,10 +2,10 @@
 	require 'includes/db.php';
 
 	$get_categories_sql = "SELECT * FROM forum_categories";
-	$get_categories_res = mysqli_query($mysqli, $get_categories_sql) or die(mysqli_error($mysqli));
+	$get_categories_res = $mysqli->query($get_categories_sql) or die($mysqli->error);
 	$display_block = '';
 
-	while ($cat_info = mysqli_fetch_array($get_categories_res)) {
+	while ($cat_info = $get_categories_res->fetch_assoc()) {
 		$cur_cat_name = $cat_info['category_name'];
 		$cur_cat_id = $cat_info['category_id'];
 		
@@ -14,7 +14,7 @@
 		END_OF_TEXT;
 	}
 
-	mysqli_free_result($get_categories_res);
+	$get_categories_res->free_result();
 ?>
 <!DOCTYPE html>
 <html lang="en">

@@ -7,7 +7,7 @@
 		// create safe values for use
 		$safe_sel_item_id = $mysqli->real_escape_string($_POST['sel_item_id']);
 		$safe_sel_item_qty = $mysqli->real_escape_string($_POST['sel_item_qty']);
-		$safe_sel_item_color = $mysqli->real_escape_string($$_POST['sel_item_color']);
+		$safe_sel_item_color = $mysqli->real_escape_string($_POST['sel_item_color']);
 
 		$get_iteminfo_sql = "SELECT * FROM store_items WHERE id = '" . $safe_sel_item_id . "'";
 		$get_iteminfo_res = $mysqli->query($get_iteminfo_sql) or die($mysqli->error);

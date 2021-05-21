@@ -1,9 +1,12 @@
 <?php
+	session_start();
 	require 'includes/db.php';
 
 	$get_cats_sql = "SELECT id, cat_title, cat_desc FROM store_categories ORDER BY cat_title";
 	$get_cats_res = $mysqli->query($get_cats_sql) or die($mysqli->error);
 
+	// in the instance where someone goes straight to store.php, a session cookie won't be created,
+	// so we remove the checkout button until a session cookie exists.
 	if (@$_COOKIE['PHPSESSID']) {
 		$sess_id = $_COOKIE['PHPSESSID'];
 		$can_checkout = "<li><a href=\"checkout.php?id=$sess_id\">Checkout</a></li>";
@@ -21,8 +24,8 @@
 			$cat_desc = stripslashes($categories['cat_desc']);
 
 			$display_block .= 
-				"<p class=\"item-cat-p\"><strong><a onclick=\"getItems('$cat_id')\" 
-				href=\"javascript:void(0)\">" . $cat_title. "</a></strong><span>&nbsp;&mdash;&nbsp;" . $cat_desc . "</span></p>
+				"<li><p class=\"item-cat-p\"><strong><a onclick=\"Ajax.getItems('$cat_id')\" 
+				href=\"javascript:void(0)\">" . $cat_title. "</a><br/></strong><span>" . $cat_desc . "</span></p></li>
 				<div id=\"$cat_id\" name=\"cat-items\"></div>";
 		}
 	}
@@ -46,6 +49,6 @@
 			</div>
 			<?php include "includes/footer.php"; ?>
 		</div>
-		<script src="js/get_store_items.js"></script>
+		<script src="js/ajax.js"></script>
 	</body>
 </html>
