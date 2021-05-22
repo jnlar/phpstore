@@ -13,10 +13,13 @@
 
 	$cat_id = $_POST['select_category'];
 
-	$add_topic_sql = "INSERT INTO forum_topics(topic_title, topic_create_time, topic_owner, category_id)
-	 VALUES('$clean_topic_title', NOW(), '$clean_topic_owner', $cat_id)";
-
-	$add_topic_res = $mysqli->query($add_topic_sql) or die($mysqli->error);
+	$add_topic_sql = $mysqli->prepare("INSERT INTO forum_topics(topic_title, topic_create_time, topic_owner, category_id) 
+		VALUE (?, NOW(), ?, ?)");
+	$add_topic_sql->bind_param("ssi", $bind_topic_title, $bind_topic_owner, $bind_cat_id);
+	$bind_topic_title = $clean_topic_title;
+	$bind_topic_owner = $clean_topic_owner;
+	$bind_cat_id = $cat_id;
+	$add_topic_sql->execute();
 
 	// get the id of the last query
 	$topic_id = $mysqli->insert_id;
@@ -27,6 +30,7 @@
 	$add_post_res = $mysqli->query($add_post_sql) or die($mysqli->error);
 
 	$mysqli->close();
+	$add_topic_sql->close();
 
 	header("Location: show_topic.php?topic_id=" . $topic_id);
 	exit;

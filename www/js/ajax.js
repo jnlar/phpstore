@@ -2,7 +2,7 @@ const Ajax = {
 	gid: id => { return document.getElementById(id) },
 
 	getItems: catId => {
-		var xhr = new XMLHttpRequest()
+		let xhr = new XMLHttpRequest()
 
 		xhr.open('GET', 'get_items.php?q=' + catId, true)
 		xhr.setRequestHeader('Cache-Control', 'max-age=300')
@@ -20,7 +20,7 @@ const Ajax = {
 	},
 
 	removeItem: id => {
-		var xhr = new XMLHttpRequest()
+		let xhr = new XMLHttpRequest()
 
 		xhr.open('GET', 'removefromcart.php?id=' + id, true)
 		xhr.onload = function() {

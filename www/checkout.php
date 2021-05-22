@@ -45,7 +45,7 @@
 			$display_block .= "<th scope=\"col\"colspan=\"3\" id=\"total-price\">Total</th><tr><td colspan=\"3\">&#36;$total</td></tr>";
 
 			$display_block .= <<<EOT
-				</table><form id="checkout-form" method="POST" action="do_checkout.php" onsubmit="return validateForm()">
+				</table><form id="checkout-form" method="POST" action="do_checkout.php">
 					<ul>
 						<li><label for="first-name">First Name: </label><input type="text" id="first-name" name="first-name"></li>
 						<li><label for="last-name">Last Name: </label><input type="text" id="last-name" name="last-name"></li>
@@ -82,6 +82,5 @@
 			</div>
 			<?php include "includes/footer.php"; ?>
 		</div>
-		<script src="js/validate.js"></script>
 	</body>
 </html>
